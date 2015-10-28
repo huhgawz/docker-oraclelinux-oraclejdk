@@ -20,3 +20,4 @@ Alternatively you can build the image locally:
 $ git clone https://github.com/huhgawz/docker-oraclelinux-oraclejdk.git
 $ cd docker-oraclelinux-oraclejdk
 $ docker build --tag=$USER/oraclelinux-oraclejdk .
+```
