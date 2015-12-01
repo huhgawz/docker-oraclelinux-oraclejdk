@@ -2,21 +2,20 @@ FROM huhgawz/oraclelinux
 
 MAINTAINER Huhgawz <huhgawz@gmail.com>
 
-ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=60 \
-    JAVA_BUILD=27
+ENV DOCKER_BUILD_JAVA_VERSION=8 \
+    DOCKER_BUILD_JAVA_UPDATE=60 \
+    DOCKER_BUILD_JAVA_BUILD=27
 
-#RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.rpm \
-RUN curl -sOLb "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.rpm \
-    && rpm -ivh jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.rpm \
-    && rm jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.rpm
+RUN curl --silent --location --remote-name --cookie "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/${DOCKER_BUILD_JAVA_VERSION}u${DOCKER_BUILD_JAVA_UPDATE}-b${DOCKER_BUILD_JAVA_BUILD}/jdk-${DOCKER_BUILD_JAVA_VERSION}u${DOCKER_BUILD_JAVA_UPDATE}-linux-x64.rpm \
+    && rpm -ivh jdk-${DOCKER_BUILD_JAVA_VERSION}u${DOCKER_BUILD_JAVA_UPDATE}-linux-x64.rpm \
+    && rm jdk-${DOCKER_BUILD_JAVA_VERSION}u${DOCKER_BUILD_JAVA_UPDATE}-linux-x64.rpm
 
-ENV JAVA_HOME="/usr/java/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}/jre/bin/java" \
+ENV JAVA_HOME="/usr/java/jdk1.${DOCKER_BUILD_JAVA_VERSION}.0_${DOCKER_BUILD_JAVA_UPDATE}/jre/bin/java" \
     PATH=${PATH}:${JAVA_HOME}/bin
 
-ENV JAVA_VERSION="" \
-    JAVA_UPDATE="" \
-    JAVA_BUILD=""
+ENV DOCKER_BUILD_JAVA_VERSION="" \
+    DOCKER_BUILD_JAVA_UPDATE="" \
+    DOCKER_BUILD_JAVA_BUILD=""
     
 ENTRYPOINT ["java"]
 
